@@ -305,7 +305,7 @@
                                 <segue destination="Cbc-lA-8w0" kind="unwind" unwindAction="unwindToList:" id="UYz-gp-Q4j"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="N8e-Pd-Ymn">
+                        <barButtonItem key="rightBarButtonItem" title="Save" id="N8e-Pd-Ymn">
                             <connections>
                                 <segue destination="Cbc-lA-8w0" kind="unwind" unwindAction="unwindToList:" id="8zr-LB-rCG"/>
                             </connections>
