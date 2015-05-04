@@ -46,15 +46,24 @@
 
 - (void)loadInitialData
 {
-    ToDoItem *item1 = [[ToDoItem alloc] init];
-    item1.itemName = @"Buy Milk";
-    [self.toDoItems addObject:item1];
-    ToDoItem *item2 = [[ToDoItem alloc] init];
-    item2.itemName = @"Buy Eggs";
-    [self.toDoItems addObject:item2];
-    ToDoItem *item3 = [[ToDoItem alloc] init];
-    item3.itemName = @"Read a book";
-    [self.toDoItems addObject:item3];
+    NSURL *fileUrl = [NSURL fileURLWithPath: @"/Users/Chris/xcode5.1/ToDoList/ToDoList/toDo.txt"];
+    NSString *fileContents = [NSString stringWithContentsOfURL:fileUrl encoding:NSUTF8StringEncoding error:nil];
+    NSArray *items = [fileContents componentsSeparatedByString:@"\n"];
+    
+    for (int i = 0; i < items.count; i++) {
+        ToDoItem *item = [[ToDoItem alloc] init];
+        NSString *content = items[i];
+        if (content.length == 0)
+            continue;
+        if ([content characterAtIndex:0] == '1')
+        {
+            item.completed = YES;
+        }
+        NSRange needleRange = NSMakeRange(1, content.length - 1);
+        item.itemName = [content substringWithRange:needleRange];
+        
+        [self.toDoItems addObject:item];
+    }
 }
 
 - (void)didReceiveMemoryWarning
